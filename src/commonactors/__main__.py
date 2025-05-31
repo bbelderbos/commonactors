@@ -1,3 +1,3 @@
-from commonactors.actors import cli
+from commonactors.cli import app
 
-cli()
+app()

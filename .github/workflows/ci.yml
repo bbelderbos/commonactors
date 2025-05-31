@@ -1,7 +1,13 @@
 name: CI
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  uv-example:
+  uv:
     name: python
     runs-on: ubuntu-latest
 
@@ -16,3 +22,6 @@ jobs:
 
       - name: Run tests with coverage
         run: uv run poe cov
+
+      - name: Check type hints
+        run: uv run poe tc

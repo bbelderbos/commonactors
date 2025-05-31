@@ -50,12 +50,12 @@ commonactors common "Tom Hanks" "Meg Ryan"
 ## 📈 Examples
 
 ```bash
-$ uv run commonactors common "Brad Pitt" " Leonardo DiCaprio"
+$ uv run commonactors common "Brad Pitt" "Leonardo DiCaprio"
 🎞️  Brad Pitt: 71 movies
-🎞️   Leonardo DiCaprio: 35 movies
+🎞️  Leonardo DiCaprio: 35 movies
 
 
-🎬 Common movies between Brad Pitt and  Leonardo DiCaprio:
+🎬 Common movies between Brad Pitt and Leonardo DiCaprio:
 
 - Once Upon a Time... in Hollywood (2019-07-24)
 

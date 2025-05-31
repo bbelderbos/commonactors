@@ -20,6 +20,21 @@ class TMDbAPI(MovieAPI):
     def __init__(self, api_key: str | None = None):
         self.api_key = api_key or TMDB_API_KEY
 
+    def _is_valid_movie(self, m: dict) -> bool:
+        return bool(
+            m.get("title")
+            and m.get("release_date")
+            and not m.get("video", False)
+            and m.get("media_type", "movie") == "movie"
+            and m.get("character") not in {"Self", "Himself", "Herself"}
+            and 99 not in m.get("genre_ids", [])  # genre 99 = Documentary
+            and "making" not in m["title"].lower()
+            and "conversation" not in m["title"].lower()
+            and "look inside" not in m["title"].lower()
+            and "in concert" not in m["title"].lower()
+            and "final cut" not in m["title"].lower()
+        )
+
     def get_movies(self, actor_name: str) -> list[Movie]:
         person = self._search_person(actor_name)
         if not person:
@@ -29,7 +44,7 @@ class TMDbAPI(MovieAPI):
         movies = [
             Movie(m["title"], m["release_date"])
             for m in credits
-            if m.get("title") and m.get("release_date")
+            if self._is_valid_movie(m)
         ]
         return sorted(movies, key=lambda m: m.released, reverse=True)
 

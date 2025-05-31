@@ -1,4 +1,4 @@
-from typing import NamedTuple
+from typing import NamedTuple, Protocol
 
 import httpx
 from decouple import config
@@ -12,7 +12,11 @@ class Movie(NamedTuple):
     released: str
 
 
-class TMDbAPI:
+class MovieAPI(Protocol):
+    def get_movies(self, actor_name: str) -> list[Movie]: ...
+
+
+class TMDbAPI(MovieAPI):
     def __init__(self, api_key: str | None = None):
         self.api_key = api_key or TMDB_API_KEY
 
@@ -46,7 +50,7 @@ class TMDbAPI:
 
 
 class ActorService:
-    def __init__(self, api: TMDbAPI | None = None):
+    def __init__(self, api: MovieAPI | None = None):
         self.api = api or TMDbAPI()
 
     def get_movies_for_actor(self, name: str) -> list[Movie]:

@@ -22,5 +22,21 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "poethepoet>=0.34.0",
     "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "ty>=0.0.1a7",
+]
+
+[tool.poe.tasks]
+test = "pytest"
+cov = "pytest --cov=commonactors --cov-report=term-missing"
+lint = "ruff check ."
+format = "ruff format ."
+tc = "ty check ."
+
+[tool.coverage.run]
+omit = [
+    "src/commonactors/__init__.py",
+    "src/commonactors/__main__.py"
 ]

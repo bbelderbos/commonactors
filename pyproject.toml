@@ -1,0 +1,26 @@
+[project]
+name = "commonactors"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Bob Belderbos", email = "bobbelderbos@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.28.1",
+    "python-decouple>=3.8",
+    "typer>=0.16.0",
+]
+
+[project.scripts]
+commonactors = "commonactors.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]

@@ -75,8 +75,8 @@ $ uv run commonactors common "Al Pacino" "Robert De Niro"
 ## 🧪 Running Tests and Linting
 
 ```bash
-uv poe cov             # pytest with coverage
-uv poe tc              # run ty for static type checking
+uv run poe cov             # pytest with coverage
+uv run poe tc              # run ty for static type checking
 ```
 
 To use pre-commit + ruff for linting, first install the pre-commit hooks:
